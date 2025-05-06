@@ -142,7 +142,7 @@
       btn.textContent = "Завантаження...";
 
       try {
-        const res = await fetch("https://brody-bot.onrender.com/get-invite");
+        const res = await fetch("https://brody-bot-server.onrender.com/get-invite");
         const data = await res.json();
 
         if (data.link) {
