@@ -65,7 +65,7 @@
   <script>
     document.getElementById("agreeBtn").addEventListener("click", async () => {
       try {
-        const res = await fetch("https://твій-сервер/get-invite");
+        const res = await fetch("https://brody-bot-server.onrender.com");
         const data = await res.json();
         if (data.link) {
           window.location.href = data.link;
