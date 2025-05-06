@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Спільнота Броди</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      margin: 0;
+      padding: 2rem;
+      max-width: 700px;
+      margin-inline: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .rules {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 1.5rem;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background: #27ae60;
+      color: white;
+      border: none;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #219150;
+    }
+    .error {
+      color: red;
+      margin-top: 1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ласкаво просимо у спільноту Броди</h1>
+
+  <div class="rules">
+    <h3>Правила спільноти:</h3>
+    <ul>
+      <li>Бути ввічливим до інших учасників</li>
+      <li>Не поширювати спам або фейкову інформацію</li>
+      <li>Дотримуватися тематики каналів</li>
+      <li>Порушення правил = вилучення</li>
+    </ul>
+  </div>
+
+  <button id="agreeBtn">Я погоджуюсь з правилами</button>
+
+  <p class="error" id="errorMsg"></p>
+
+  <script>
+    document.getElementById("agreeBtn").addEventListener("click", async () => {
+      try {
+        const res = await fetch("https://твій-сервер/get-invite");
+        const data = await res.json();
+        if (data.link) {
+          window.location.href = data.link;
+        } else {
+          document.getElementById("errorMsg").textContent = "Помилка при отриманні запрошення.";
+        }
+      } catch (err) {
+        document.getElementById("errorMsg").textContent = "Не вдалося з'єднатися з сервером.";
+      }
+    });
+  </script>
+</body>
+</html>
